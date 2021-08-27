@@ -1,0 +1,21 @@
+.progress {
+  &__block {
+    display: flex;
+
+    &_timeline {
+      input {
+        width: 600px;
+      }
+    }
+  }
+
+  &__counts {
+    margin-left: 16px;
+    width: 70px;
+    text-align: right;
+
+    &_timeline {
+      width: 96px;
+    }
+  }
+}

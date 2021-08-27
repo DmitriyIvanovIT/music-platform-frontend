@@ -1,0 +1,11 @@
+.create {
+  &__block {
+    padding: 20px;
+  }
+
+  &__input {
+    &:not(:first-child) {
+      margin-top: 10px;
+    }
+  }
+}
