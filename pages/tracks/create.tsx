@@ -9,14 +9,6 @@ import {useRouter} from "next/router";
 import {useInput} from "@/hooks/useInput";
 import axios from "axios";
 
-type FormDataType = {
-  name: string,
-  artist: string,
-  text: string,
-  picture: FileList | null,
-  audio: FileList | null,
-}
-
 const Create = () => {
   const router = useRouter();
   const [activeStep, setActiveStep] = useState(1);
@@ -30,19 +22,13 @@ const Create = () => {
     if (activeStep !== 3) {
       setActiveStep(activeStep + 1);
     } else {
-      const formData: FormDataType = {
-        name: '',
-        artist: '',
-        text: '',
-        picture: null,
-        audio: null,
-      };
+      const formData = new FormData();
 
-      formData.name = name.value;
-      formData.artist = artist.value;
-      formData.text = text.value;
-      formData.picture = picture;
-      formData.audio = audio;
+      formData.append('name', name.value);
+      formData.append('artist', artist.value);
+      formData.append('text', text.value);
+      formData.append('picture', picture as unknown as Blob);
+      formData.append('audio', audio as unknown as Blob);
 
       axios.post('http://localhost:5000/tracks', formData)
         .then(res => router.push('/tracks'))
